@@ -13,16 +13,13 @@ namespace AglTest.Domain.Tests.Services
 {
     public class PetSortingServiceTests
     {
-        private IPetSortingService _service;
-        private readonly ILogger<PetService> _serviceLogger = Mock.Of<ILogger<PetService>>();        
+        private readonly IPetSortingService _service = new PetUtilService(Mock.Of<ILogger<PetUtilService>>());
+                
 
         [Fact]
         public void SortByName_WithAllValidPets()
         {
-            var data = Pets.GetAllValidPets();
-            var repoMock = new Mock<IPersonRepository>();            
-            _service = new PetService(repoMock.Object, _serviceLogger);   
-            
+            var data = Pets.GetAllValidPets();                      
             var pets = _service.SortByName(data).ToArray();
             Assert.True(pets[0] == Pets.Hogger);
         }
@@ -31,9 +28,6 @@ namespace AglTest.Domain.Tests.Services
         public void SortByName_WithSomeNullValidPets()
         {
             var data = Pets.GetSomeNullValidPets();
-            var repoMock = new Mock<IPersonRepository>();            
-            _service = new PetService(repoMock.Object, _serviceLogger);   
-            
             var pets = _service.SortByName(data).ToArray();
             Assert.True(pets[0] == Pets.Hogger);
             Assert.True(pets.Length == 7);
@@ -43,9 +37,6 @@ namespace AglTest.Domain.Tests.Services
         public void SortByName_WithAllNullPets()
         {
             var data = Pets.GetAllNullPets();
-            var repoMock = new Mock<IPersonRepository>();            
-            _service = new PetService(repoMock.Object, _serviceLogger);   
-            
             var pets = _service.SortByName(data).ToArray();
             Assert.True(pets.IsNullOrEmpty());
         }
@@ -54,9 +45,6 @@ namespace AglTest.Domain.Tests.Services
         public void SortByName_WithDuplicatedPets()
         {
             var data = Pets.GetDuplicatedListPets();
-            var repoMock = new Mock<IPersonRepository>();            
-            _service = new PetService(repoMock.Object, _serviceLogger);   
-            
             var pets = _service.SortByName(data).ToArray();
             Assert.True(pets[0] == Pets.Hogger);
         }

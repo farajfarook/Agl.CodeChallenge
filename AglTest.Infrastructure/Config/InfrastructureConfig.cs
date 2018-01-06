@@ -15,7 +15,9 @@ namespace AglTest.Infrastructure.Config
             services.Configure<AppSettings>(settings);
             services.AddSingleton<HttpClient>();
             services.AddTransient<IPersonRepository, PersonRepository>();
-            services.AddTransient<IPetSortingService, PetService>();
+            services.AddTransient<IPetSortingService, PetUtilService>();
+            services.AddTransient<IPetFilteringService, PetDataService>();
+            services.AddTransient<IPetCollectionService, PetDataService>();
         }
     }
 }
