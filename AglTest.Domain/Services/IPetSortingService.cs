@@ -3,9 +3,8 @@ using AglTest.Domain.Models;
 
 namespace AglTest.Domain.Services
 {
-    public interface IPetService
+    public interface IPetSortingService
     {
         IEnumerable<Pet> SortByName(IEnumerable<Pet> pets);
-        IEnumerable<Pet> FetchPetsByGender(IEnumerable<Person> persons, PersonGender gender);
     }
 }

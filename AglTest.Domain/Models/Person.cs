@@ -8,23 +8,6 @@ namespace AglTest.Domain.Models
         public PersonGender Gender { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
-        public IEnumerable<Pet> Pets { get; set; }
-        
-    }
-
-    public class Pet: IModel
-    {
-        public PetType Type { get; set; }
-        public string Name { get; set; }
-    }
-
-    public enum PetType
-    {
-        Cat, Dog
-    }
-
-    public enum PersonGender
-    {
-        Male, Female, Other
+        public IEnumerable<Pet> Pets { get; set; }        
     }
 }
