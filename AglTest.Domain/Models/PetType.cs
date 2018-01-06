@@ -2,6 +2,6 @@
 {
     public enum PetType
     {
-        Cat, Dog
+        Cat, Dog, Fish
     }
 }

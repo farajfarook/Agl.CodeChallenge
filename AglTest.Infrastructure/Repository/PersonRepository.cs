@@ -28,18 +28,26 @@ namespace AglTest.Infrastructure.Repository
 
         public async Task<IEnumerable<Person>> ListAsync()
         {
-            _logger.LogTrace($"Fetching data from {_appSettings.ResourceUrl}");
-            var response = await _client.GetAsync(_appSettings.ResourceUrl);
             try
             {
-                return JsonConvert.DeserializeObject<IEnumerable<Person>>(response);
+                _logger.LogTrace($"Fetching data from {_appSettings.ResourceUrl}");
+                var response = await _client.GetAsync(_appSettings.ResourceUrl);
+                
+                try
+                {
+                    return JsonConvert.DeserializeObject<IEnumerable<Person>>(response);
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, $"Error parsing - {response}");
+                    throw;
+                }
             }
             catch (Exception e)
             {
-                _logger.LogError(e, $"Failed to parse - {response}");
-                throw;
+                _logger.LogError(e, "Failed to fetch");
+                throw new AglFetchFailedException();
             }
-            
         }
     }
 }
