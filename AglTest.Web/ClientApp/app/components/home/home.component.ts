@@ -9,7 +9,7 @@ import { PetService } from '../../services/pet.service';
 export class HomeComponent implements OnInit{
 
     private _petService: PetService;
-    pets: any;
+    petCollections: any;
 
     constructor(petService: PetService) {
         this._petService = petService;
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit{
 
     ngOnInit(): void {
         this._petService.GetPetCollection().subscribe((result) => {
-            this.pets = result;
+            this.petCollections = result;
         });
     }
 }
