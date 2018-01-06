@@ -3,7 +3,7 @@ using AglTest.Domain.SeedWork;
 
 namespace AglTest.Domain.Models
 {
-    public class Person: IModel
+    public class Person: IRootModel
     {
         public PersonGender Gender { get; set; }
         public string Name { get; set; }
