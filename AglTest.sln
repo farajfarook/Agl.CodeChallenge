@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AglTest.Domain.Tests", "Agl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AglTest.Infrastructure.Tests", "AglTest.Infrastructure.Tests\AglTest.Infrastructure.Tests.csproj", "{FC4D29C3-958F-46CE-BF42-ED6487E1BF68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AglTest.Web.Tests", "AglTest.Web.Tests\AglTest.Web.Tests.csproj", "{80184825-AE96-4D88-8E4F-695D452226A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{FC4D29C3-958F-46CE-BF42-ED6487E1BF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC4D29C3-958F-46CE-BF42-ED6487E1BF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC4D29C3-958F-46CE-BF42-ED6487E1BF68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80184825-AE96-4D88-8E4F-695D452226A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80184825-AE96-4D88-8E4F-695D452226A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80184825-AE96-4D88-8E4F-695D452226A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80184825-AE96-4D88-8E4F-695D452226A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +54,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1ACD3DB1-491A-4DD6-B493-C72986AEA5E0} = {8B08B640-A714-4E8D-81E6-B6FE7C678E76}
 		{FC4D29C3-958F-46CE-BF42-ED6487E1BF68} = {8B08B640-A714-4E8D-81E6-B6FE7C678E76}
+		{80184825-AE96-4D88-8E4F-695D452226A3} = {8B08B640-A714-4E8D-81E6-B6FE7C678E76}
 	EndGlobalSection
 EndGlobal
