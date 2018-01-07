@@ -1,6 +1,17 @@
 # AglTest
 AGL Pet sorting test app
 
+## Builds
+
+Master 
+
+![master](https://travis-ci.org/farajfarook/AglTest.svg?branch=master)
+
+Develop 
+
+![master](https://travis-ci.org/farajfarook/AglTest.svg?branch=develop)
+
+
 ## Introduction
 
 This dotnet core 2.0 demostrative application uses DDD principles for the back end and the front end is developed using Angular
