@@ -289,4 +289,6 @@ __pycache__/
 
 # Angular App
 **/ClientApp/dist
+**/ClientApp/**/*.js
+**/ClientApp/**/*.js.map
 **/wwwroot/dist

@@ -19,14 +19,14 @@ namespace AglTest.Infrastructure.Tests.Client
         private readonly ILogger<WebResourceClient> _logger = Mock.Of<ILogger<WebResourceClient>>();
         
         [Fact]
-        public async Task GetAsync_InvalidUrl()
+        public async Task GetAsync_InvalidUrl_ThrowsException()
         {   
             var client = new WebResourceClient(_logger);            
             await Assert.ThrowsAsync<AglInvalidUrlException>(() => client.GetAsync(InvalidUrl));
         }
 
         [Fact]
-        public void GetAsync_ValidUrl()
+        public void GetAsync_ValidUrl_Success()
         {            
             var client = new WebResourceClient(_logger);
             var response = client.GetAsync(ValidUrl);
@@ -34,7 +34,7 @@ namespace AglTest.Infrastructure.Tests.Client
         }
 
         [Fact]
-        public async Task GetAsync_ErrorfulUrl()
+        public async Task GetAsync_ErrorfulUrl_ThrowsException()
         {            
             var client = new WebResourceClient(_logger);
             await Assert.ThrowsAsync<AglErrorfulUrlException>(() => client.GetAsync(ErrorFulUrl));

@@ -17,7 +17,7 @@ namespace AglTest.Domain.Tests.Services
                 
 
         [Fact]
-        public void SortByName_WithAllValidPets()
+        public void SortByName_AllValidPets_Success()
         {
             var data = Pets.GetAllValidPets();                      
             var pets = _service.SortByName(data).ToArray();
@@ -25,7 +25,7 @@ namespace AglTest.Domain.Tests.Services
         }
         
         [Fact]
-        public void SortByName_WithSomeNullValidPets()
+        public void SortByName_SomeNullValidPets_FilteredValues()
         {
             var data = Pets.GetSomeNullValidPets();
             var pets = _service.SortByName(data).ToArray();
@@ -34,7 +34,7 @@ namespace AglTest.Domain.Tests.Services
         }
         
         [Fact]
-        public void SortByName_WithAllNullPets()
+        public void SortByName_WithAllNullPets_Empty()
         {
             var data = Pets.GetAllNullPets();
             var pets = _service.SortByName(data).ToArray();
@@ -42,7 +42,7 @@ namespace AglTest.Domain.Tests.Services
         }
         
         [Fact]
-        public void SortByName_WithDuplicatedPets()
+        public void SortByName_DuplicatedPets_Success()
         {
             var data = Pets.GetDuplicatedListPets();
             var pets = _service.SortByName(data).ToArray();

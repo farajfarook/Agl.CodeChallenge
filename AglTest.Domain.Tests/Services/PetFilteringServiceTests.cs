@@ -21,7 +21,7 @@ namespace AglTest.Domain.Tests.Services
         [InlineData(PersonGender.Male, 3)]
         [InlineData(PersonGender.Female, 5)]
         [InlineData(PersonGender.Other, 0)]        
-        public async Task ListPetsByPersonGenderAsync_WithAllValidPeople(PersonGender gender, int count)
+        public async Task ListPetsByPersonGenderAsync_AllValidPeople_Success(PersonGender gender, int count)
         {
             var data = People.GetAllValidPeople();
             var repoMock = new Mock<IPersonRepository>();
@@ -36,7 +36,7 @@ namespace AglTest.Domain.Tests.Services
         [InlineData(PersonGender.Male, 3)]
         [InlineData(PersonGender.Female, 5)]
         [InlineData(PersonGender.Other, 0)]        
-        public async Task ListPetsByPersonGenderAsync_WithSomeNullPeople(PersonGender gender, int count)
+        public async Task ListPetsByPersonGenderAsync_SomeNullPeople_Success(PersonGender gender, int count)
         {
             var data = People.GetSomeNullPeople();
             var repoMock = new Mock<IPersonRepository>();
@@ -51,7 +51,7 @@ namespace AglTest.Domain.Tests.Services
         [InlineData(PersonGender.Male, 0)]
         [InlineData(PersonGender.Female, 0)]
         [InlineData(PersonGender.Other, 0)]        
-        public async Task ListPetsByPersonGenderAsync_WithAllNullPeople(PersonGender gender, int count)
+        public async Task ListPetsByPersonGenderAsync_AllNullPeople_Success(PersonGender gender, int count)
         {
             var data = People.GetAllNullPeople();
             var repoMock = new Mock<IPersonRepository>();
@@ -66,7 +66,7 @@ namespace AglTest.Domain.Tests.Services
         [InlineData(PersonGender.Male, 0)]
         [InlineData(PersonGender.Female, 0)]
         [InlineData(PersonGender.Other, 0)]        
-        public async Task ListPetsByPersonGenderAsync_WithAllEmptyPetsPeople(PersonGender gender, int count)
+        public async Task ListPetsByPersonGenderAsync_AllEmptyPetsPeople_Success(PersonGender gender, int count)
         {
             var data = People.GetAllEmptyPetPeople();
             var repoMock = new Mock<IPersonRepository>();
@@ -81,7 +81,7 @@ namespace AglTest.Domain.Tests.Services
         [InlineData(PersonGender.Male, 1)]
         [InlineData(PersonGender.Female, 5)]
         [InlineData(PersonGender.Other, 0)]
-        public async Task ListPetsByPersonGenderAsync_WithSharedPetsPeople(PersonGender gender, int count)
+        public async Task ListPetsByPersonGenderAsync_SharedPetsPeople_Success(PersonGender gender, int count)
         {
             var data = People.GetSharedPetPeople();
             var repoMock = new Mock<IPersonRepository>();
