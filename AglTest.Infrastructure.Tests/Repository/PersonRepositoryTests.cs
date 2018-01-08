@@ -30,7 +30,7 @@ namespace AglTest.Infrastructure.Tests.Repository
         }
 
         [Fact]
-        public async Task ListAsync_Valid()
+        public async Task ListAsync_Valid_Success()
         {
             var repo = GetRepo(ValidUrl);
             var data = await repo.ListAsync();

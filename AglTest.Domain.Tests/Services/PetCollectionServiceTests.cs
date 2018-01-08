@@ -19,19 +19,19 @@ namespace AglTest.Domain.Tests.Services
         private readonly PetUtilService _petUtilService = new PetUtilService(Mock.Of<ILogger<PetUtilService>>());
 
         [Fact]
-        public Task ListPetsByPersonGenderAsync_WithAllValidPeople()
+        public Task ListPetsByPersonGenderAsync_AllValidPeople_Success()
         {
             return ListPetsByPersonGenderAsync_WithData(People.GetAllValidPeople(), 3, 5, 0);
         }
         
         [Fact]
-        public Task ListPetsByPersonGenderAsync_WithAllNullPeople()
+        public Task ListPetsByPersonGenderAsync_AllNullPeople_Success()
         {
             return ListPetsByPersonGenderAsync_WithData(People.GetAllNullPeople(), 0, 0, 0);
         }
         
         [Fact]
-        public Task ListPetsByPersonGenderAsync_WithSomeNullPeople()
+        public Task ListPetsByPersonGenderAsync_SomeNullPeople_Success()
         {
             return ListPetsByPersonGenderAsync_WithData(People.GetSomeNullPeople(), 3, 5, 0);
         }
