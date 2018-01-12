@@ -5,11 +5,11 @@ AGL Pet sorting test app
 
 Master 
 
-![master](https://travis-ci.org/farajfarook/AglTest.svg?branch=master)
+[![Build Status](https://travis-ci.org/farajfarook/AglTest.svg?branch=master)](https://travis-ci.org/farajfarook/AglTest)
 
 Develop 
 
-![master](https://travis-ci.org/farajfarook/AglTest.svg?branch=develop)
+[![Build Status](https://travis-ci.org/farajfarook/AglTest.svg?branch=develop)](https://travis-ci.org/farajfarook/AglTest)
 
 
 ## Introduction
