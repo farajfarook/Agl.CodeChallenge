@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AglTest.Infrastructure\AglTest.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Enbiso.NLib.Cqrs" Version="3.1.2" />
+    <PackageReference Include="Enbiso.NLib.OpenApi" Version="3.1.2" />
+    <PackageReference Include="Enbiso.NLib.GlobalExceptions" Version="3.1.2" />
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+  </ItemGroup>
+</Project>
