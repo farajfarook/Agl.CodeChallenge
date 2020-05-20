@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AglTest.Domain.Models;
+using AglTest.Domain.People.Models;
 
 namespace AglTest.Domain.Tests.Mocks
 {
@@ -10,10 +11,10 @@ namespace AglTest.Domain.Tests.Mocks
             Age = 5,
             Gender = PersonGender.Male,
             Name = "Sam",
-            Pets = new List<Pet>()
+            Pets = new List<string>
             {
-                Pets.Max,
-                Pets.Maxi
+                Pets.Max.Name,
+                Pets.Maxi.Name
             }
         };
 
@@ -22,10 +23,10 @@ namespace AglTest.Domain.Tests.Mocks
             Age = 5,
             Gender = PersonGender.Female,
             Name = "Anne",
-            Pets = new List<Pet>()
+            Pets = new List<string>
             {
-                Pets.Nick,
-                Pets.Hogger
+                Pets.Nick.Name,
+                Pets.Hogger.Name
             }
         };
         
@@ -34,12 +35,12 @@ namespace AglTest.Domain.Tests.Mocks
             Age = 5,
             Gender = PersonGender.Female,
             Name = "Jenny",
-            Pets = new List<Pet>()
+            Pets = new List<string>()
             {
-                Pets.Kite,
-                Pets.Spooky,
-                Pets.Mingo,
-                Pets.Hogger
+                Pets.Kite.Name,
+                Pets.Spooky.Name,
+                Pets.Mingo.Name,
+                Pets.Hogger.Name
             }
         };
         
@@ -48,7 +49,7 @@ namespace AglTest.Domain.Tests.Mocks
             Age = 5,
             Gender = PersonGender.Female,
             Name = "Wini",
-            Pets = new List<Pet>()
+            Pets = new List<string>()
         };
         
         private static readonly Person Raju = new Person()
@@ -64,9 +65,9 @@ namespace AglTest.Domain.Tests.Mocks
             Age = 5,
             Gender = PersonGender.Male,
             Name = "Steve",
-            Pets = new List<Pet>()
+            Pets = new List<string>
             {
-                Pets.Hogger
+                Pets.Hogger.Name
             }
         };
         

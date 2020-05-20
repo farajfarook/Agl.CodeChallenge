@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AglTest.Domain.Models;
-using AglTest.Domain.Repositories;
-using AglTest.Domain.Services;
+using AglTest.Domain.People;
+using AglTest.Domain.People.Models;
+using AglTest.Domain.Pets.Services;
 using AglTest.Domain.Tests.Mocks;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -38,7 +39,7 @@ namespace AglTest.Domain.Tests.Services
 
         private async Task ListPetsByPersonGenderAsync_WithData(IEnumerable<Person> data, int maleCount, int femaleCount, int otherCount)
         {            
-            var repoMock = new Mock<IPersonRepository>();
+            var repoMock = new Mock<IPeopleRepository>();
             repoMock.Setup(_ => _.ListAsync()).ReturnsAsync(data);
             _service = new PetDataService(repoMock.Object, _dataServiceLogger, _petUtilService);   
             

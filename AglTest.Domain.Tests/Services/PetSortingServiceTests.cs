@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using AglTest.Domain.Models;
-using AglTest.Domain.Repositories;
-using AglTest.Domain.Services;
+using AglTest.Domain.Pets.Services;
 using AglTest.Domain.Tests.Mocks;
 using Castle.Core.Internal;
 using Microsoft.Extensions.Logging;
