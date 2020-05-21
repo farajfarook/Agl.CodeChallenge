@@ -1,8 +1,9 @@
 language: csharp
 dotnet: 3.1.201
+mono: none
 services: docker
-script:  
-  - dotnet build 
+script:
+  - dotnet build
   - dotnet test ./AglTest.Domain.Tests/
   - dotnet test ./AglTest.Infrastructure.Tests/
   - docker build -f AglTest.Api/Dockerfile .
