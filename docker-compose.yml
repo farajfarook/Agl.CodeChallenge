@@ -1,0 +1,25 @@
+﻿version: "3"
+services:
+  
+  loadbalancer:
+    container_name: loadbalancer
+    ports:
+      - 8088:80
+    image: traefik:maroilles
+    privileged: true
+    command: --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    
+  agltest.api:
+    container_name: agltest.api
+    build:
+      context: .
+      dockerfile: AglTest.Api/Dockerfile
+    environment:
+      - OpenApi__BasePath=/api/v1/
+    restart: unless-stopped
+    labels:
+      - "traefik.frontend.rule=PathPrefixStrip: /api/v1"
+    
