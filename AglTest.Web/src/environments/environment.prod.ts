@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
   api: {
-    host: 'http://localhost:8088',
+    host: 'http://localhost:8088/api/v1/',
     services: {
-      pets: '/api/v1/pets'
+      pets: 'pets'
     }
   }
 }

@@ -7,12 +7,17 @@ import { PersonGender } from '../models/person.model';
 
 @Component({
     selector: 'app-pet-list',
-    template: `
-    <mat-list>
-        <mat-list-item *ngFor="let pet of pets$ | async">
-            <app-pet-detail [pet]="pet"></app-pet-detail>
-        </mat-list-item>
-    </mat-list>
+    template: `    
+    <div mat-subheader><h1>{{gender}}</h1></div>
+    <mat-list-item *ngFor="let pet of pets$ | async">
+        <div fxFlex="50%">{{pet.name}}</div>
+        <mat-chip-list fxFlex="50%"><mat-chip>{{pet.type}}</mat-chip></mat-chip-list>        
+    </mat-list-item>
+    <mat-list-item *ngIf="!(pets$ | async).length">
+        <span class="mat-caption">
+            ... No pets owned by {{gender}} owners
+        </span>
+    </mat-list-item>
     `
 })
 

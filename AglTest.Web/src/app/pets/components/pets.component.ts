@@ -6,17 +6,22 @@ import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-pets',
-    template: `
-    <mat-card *ngFor="let gender of genders$ | async">
-        <h1>{{gender}}</h1>
+    template: `    
+    <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+    <mat-list *ngFor="let gender of genders$ | async">        
         <app-pet-list [gender]="gender"></app-pet-list>            
-    </mat-card>
-
-    `
+    </mat-list>
+    `,
+    styles: [`
+    mat-card {
+        margin: 10px;
+    }
+    `]
 })
 
 export class PetsComponent implements OnInit, OnDestroy {
 
+    loading$: Observable<boolean>
     genders$: Observable<PersonGender[]>
     subscription: Subscription
 
@@ -24,6 +29,7 @@ export class PetsComponent implements OnInit, OnDestroy {
         this.genders$ = this.petService.petsByGender$.pipe(
             map(res => res.map(r => r.gender))
         )
+        this.loading$ = this.petService.loading$
     }
 
     ngOnInit() {

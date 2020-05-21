@@ -2,21 +2,24 @@ import { NgModule } from '@angular/core';
 
 import { PetsComponent } from './components/pets.component';
 import { PetListComponent } from './components/pet-list.component';
-import { PetDetailComponent } from './components/pet-detail.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     imports: [
         CommonModule,
         HttpClientModule,
-        MatCardModule,
-        MatListModule
+        MatChipsModule,
+        MatListModule,
+        MatProgressSpinnerModule,
+        FlexLayoutModule
     ],
     exports: [],
-    declarations: [PetsComponent, PetListComponent, PetDetailComponent],
+    declarations: [PetsComponent, PetListComponent],
     providers: [],
 })
 export class PetsModule { }
