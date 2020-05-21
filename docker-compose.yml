@@ -22,4 +22,11 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.frontend.rule=PathPrefixStrip: /api/v1"
+
+  agltest.web:
+    container_name: agltest.web
+    build: AglTest.Web
+    restart: unless-stopped
+    labels:
+      - "traefik.frontend.rule=PathPrefixStrip: /"      
     
