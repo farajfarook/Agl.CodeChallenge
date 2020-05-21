@@ -11,10 +11,18 @@ import { map } from 'rxjs/operators';
     <mat-list *ngFor="let gender of genders$ | async">        
         <app-pet-list [gender]="gender"></app-pet-list>            
     </mat-list>
+    <div class="error mat-body-strong" *ngIf="error$ | async">{{error$ | async}}</div>
     `,
     styles: [`
     mat-card {
         margin: 10px;
+    }
+    mat-spinner {
+        margin:10px auto;
+    }
+    .error {
+        margin: 16px;
+        color: darkred;
     }
     `]
 })
@@ -22,6 +30,7 @@ import { map } from 'rxjs/operators';
 export class PetsComponent implements OnInit, OnDestroy {
 
     loading$: Observable<boolean>
+    error$: Observable<string>
     genders$: Observable<PersonGender[]>
     subscription: Subscription
 
@@ -30,6 +39,9 @@ export class PetsComponent implements OnInit, OnDestroy {
             map(res => res.map(r => r.gender))
         )
         this.loading$ = this.petService.loading$
+        this.error$ = this.petService.error$.pipe(
+            map(err => err && err.message)
+        )
     }
 
     ngOnInit() {

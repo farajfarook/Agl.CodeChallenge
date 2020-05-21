@@ -16,7 +16,7 @@ export class PetsService {
     private loading: BehaviorSubject<boolean> = new BehaviorSubject(false)
     public loading$ = this.loading.asObservable()
 
-    private error: BehaviorSubject<string> = new BehaviorSubject(null)
+    private error: BehaviorSubject<any> = new BehaviorSubject(null)
     public error$ = this.error.asObservable()
 
     constructor(private httpClient: HttpClient) { }
