@@ -5,6 +5,8 @@ AGL Pet Sorting [![Build Status](https://travis-ci.org/farajfarook/AglTest.svg?b
 
 This dotnet core demostrative application uses DDD principles for the back end and the front end is developed using Angular
 
+```
+
 +---------------------------------------------------------------+
 |                                                               |
 |                           traefik                             |
@@ -25,6 +27,7 @@ This dotnet core demostrative application uses DDD principles for the back end a
      |                 |                 |                 |
      +-----------------+                 +-----------------+
 
+```
 
 ### Projects
  - AglTest.Api - Api based on Command Handler Pattern using `Enbiso.NLib.Cqrs`
