@@ -13,11 +13,11 @@ using Enbiso.NLib.DependencyInjection;
 
 namespace AglTest.Api.Application.Pets.Handlers
 {
-    public class ListPetsGroupedByGender: ICommand<ListPetsGroupByGenderResponse>
+    public class ListPetsByGender: ICommand<ListPetsByGenderResponse>
     {
     }
 
-    public class ListPetsGroupByGenderResponse : ICommandResponse
+    public class ListPetsByGenderResponse : ICommandResponse
     {
         public IEnumerable<GenderGroupedPetsRecord> Records { get; set; }
     }
@@ -29,20 +29,20 @@ namespace AglTest.Api.Application.Pets.Handlers
     }
 
     [TransientService]
-    public class ListPetsGroupedByGenderHandler : ICommandHandler<ListPetsGroupedByGender, ListPetsGroupByGenderResponse>
+    public class ListPetsByGenderHandler : ICommandHandler<ListPetsByGender, ListPetsByGenderResponse>
     {
         private readonly IPetsRepository _petsRepository;
         private readonly IPeopleRepository _peopleRepository;
         private readonly IPetSortingService _sortingService;
 
-        public ListPetsGroupedByGenderHandler(IPetsRepository petsRepository, IPeopleRepository peopleRepository, IPetSortingService sortingService)
+        public ListPetsByGenderHandler(IPetsRepository petsRepository, IPeopleRepository peopleRepository, IPetSortingService sortingService)
         {
             _petsRepository = petsRepository;
             _peopleRepository = peopleRepository;
             _sortingService = sortingService;
         }
         
-        public async Task<ListPetsGroupByGenderResponse> Handle(ListPetsGroupedByGender request, CancellationToken cancellationToken)
+        public async Task<ListPetsByGenderResponse> Handle(ListPetsByGender request, CancellationToken cancellationToken)
         {
             var records = new List<GenderGroupedPetsRecord>();
             foreach (var gender in (PersonGender[])Enum.GetValues(typeof(PersonGender)))
@@ -63,7 +63,7 @@ namespace AglTest.Api.Application.Pets.Handlers
                     Pets = _sortingService.SortByName(pets)
                 });
             }
-            return new ListPetsGroupByGenderResponse
+            return new ListPetsByGenderResponse
             {
                 Records = records
             };

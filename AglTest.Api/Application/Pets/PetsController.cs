@@ -19,7 +19,7 @@ namespace AglTest.Api.Application.Pets
         [HttpGet]
         public Task<ListPetsResponse> List([FromQuery] ListPets query) => _bus.Send(query);
         
-        [HttpGet("_groupByGender")]
-        public Task<ListPetsGroupByGenderResponse> GroupByGender() => _bus.Send(new ListPetsGroupedByGender());
+        [HttpGet("_by_gender")]
+        public Task<ListPetsByGenderResponse> ListByGender() => _bus.Send(new ListPetsByGender());
     }
 }
