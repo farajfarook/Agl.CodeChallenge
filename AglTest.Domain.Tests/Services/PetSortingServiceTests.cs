@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Linq;
 using AglTest.Domain.Pets.Services;
 using AglTest.Domain.Tests.Mocks;
-using Castle.Core.Internal;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
@@ -29,10 +29,10 @@ namespace AglTest.Domain.Tests.Services
         {
             var data = PetsMock.GetSomeNullValidPets();
             var pets = _service.SortByName(data).ToArray();
-            Assert.True(pets[0] == PetsMock.Hogger);
-            Assert.True(pets[1] == PetsMock.Kite);
-            Assert.True(pets[6] == PetsMock.Spooky);
-            Assert.True(pets.Length == 7);
+            Assert.Equal(PetsMock.Hogger, pets[0]);
+            Assert.Equal(PetsMock.Kite, pets[1]);
+            Assert.Equal(PetsMock.Spooky, pets[6]);
+            Assert.Equal(7, pets.Length);
         }
         
         [Fact]
@@ -40,7 +40,7 @@ namespace AglTest.Domain.Tests.Services
         {
             var data = PetsMock.GetAllNullPets();
             var pets = _service.SortByName(data).ToArray();
-            Assert.True(pets.IsNullOrEmpty());
+            Assert.Empty(pets);
         }
         
         [Fact]
@@ -48,7 +48,7 @@ namespace AglTest.Domain.Tests.Services
         {
             var data = PetsMock.GetDuplicatedListPets();
             var pets = _service.SortByName(data).ToArray();
-            Assert.True(pets[0] == PetsMock.Hogger);
+            Assert.Equal(PetsMock.Hogger, pets.FirstOrDefault());
         }
     }
 }
