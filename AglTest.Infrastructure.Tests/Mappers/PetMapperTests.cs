@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AglTest.Domain.Models;
+﻿using AglTest.Domain.Models;
+using AglTest.Domain.Pets.Models;
 using AglTest.Infrastructure.Data;
 using AglTest.Infrastructure.Mappers;
 using Xunit;
@@ -14,7 +13,7 @@ namespace AglTest.Infrastructure.Tests.Mappers
         [InlineData("Rofl", PetType.Dog)]
         [InlineData(null, PetType.Cat)]
         [InlineData(null, null)]
-        public void Map_Theory(string name, PetType type)
+        public void Map_Theory(string name, PetType? type)
         {
             var mapper = new PetMapper();
             var model = mapper.Map(new PetDto
@@ -24,7 +23,7 @@ namespace AglTest.Infrastructure.Tests.Mappers
             });
             
             Assert.Equal(name, model.Name);
-            Assert.Equal(type, model.Type);
+            Assert.Equal(type??PetType.Other, model.Type);
         }
     }
 }

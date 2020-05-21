@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AglTest.Domain.Models;
+using AglTest.Domain.Pets.Models;
 
 namespace AglTest.Domain.Tests.Mocks
 {

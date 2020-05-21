@@ -17,7 +17,7 @@ namespace AglTest.Infrastructure.Tests.Mappers
         [InlineData("John", PersonGender.Other, 33, null)]
         [InlineData("Foo", null, -33, 0)]
         [InlineData(null, null, null, null)]
-        public void Map_Theory(string name, PersonGender gender, int? age, int? numberOfPets)
+        public void Map_Theory(string name, PersonGender? gender, int? age, int? numberOfPets)
         {
             var mapper = new PersonMapper();
             var pets = new List<PetDto>();
@@ -40,9 +40,8 @@ namespace AglTest.Infrastructure.Tests.Mappers
             });
             
             Assert.Equal(name, model.Name);
-            Assert.NotNull(model.Age);
             Assert.Equal(age??0, model.Age);
-            Assert.Equal(gender, model.Gender);
+            Assert.Equal(gender??PersonGender.Other, model.Gender);
             Assert.NotNull(model.Pets);
             Assert.Equal(numberOfPets??0, model.Pets.Count());
         }

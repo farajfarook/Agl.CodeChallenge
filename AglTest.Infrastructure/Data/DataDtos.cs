@@ -2,13 +2,14 @@
 using System.Text.Json.Serialization;
 using AglTest.Domain.Models;
 using AglTest.Domain.People.Models;
+using AglTest.Domain.Pets.Models;
 
 namespace AglTest.Infrastructure.Data
 {
     public class PersonDto
     {
         [JsonPropertyName("gender")]
-        public PersonGender Gender { get; set; }
+        public PersonGender? Gender { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
         [JsonPropertyName("age")]
@@ -20,7 +21,7 @@ namespace AglTest.Infrastructure.Data
     public class PetDto
     {
         [JsonPropertyName("type")]
-        public PetType Type { get; set; }
+        public PetType? Type { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
     }

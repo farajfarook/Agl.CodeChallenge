@@ -64,14 +64,13 @@ namespace AglTest.Infrastructure.Tests.Repositories
 
             mapper.DidNotReceive().Map(Arg.Any<PersonDto>());
             Assert.NotNull(resp);
-            Assert.Equal(0, resp.Count());
+            Assert.Empty(resp);
         }
 
         [Theory]
         [InlineData(PersonGender.Male)]
         [InlineData(PersonGender.Female)]
         [InlineData(PersonGender.Other)]
-        [InlineData(null)]
         public async Task ListByGenderAsync_Theory(PersonGender gender)
         {
             var repo = _provider.GetService<IPeopleRepository>();

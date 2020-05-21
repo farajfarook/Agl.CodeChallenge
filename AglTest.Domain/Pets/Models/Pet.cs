@@ -1,4 +1,6 @@
-﻿namespace AglTest.Domain.Models
+﻿using AglTest.Domain.Pets.Models;
+
+namespace AglTest.Domain.Models
 {
     public class Pet
     {

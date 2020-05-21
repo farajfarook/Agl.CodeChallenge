@@ -1,4 +1,5 @@
 ﻿using AglTest.Domain.Models;
+using AglTest.Domain.Pets.Models;
 using AglTest.Infrastructure.Data;
 using Enbiso.NLib.DependencyInjection;
 
@@ -17,7 +18,7 @@ namespace AglTest.Infrastructure.Mappers
             return new Pet
             {
                 Name = dto.Name,
-                Type = dto.Type
+                Type = dto.Type?? PetType.Other
             };
         }
     }

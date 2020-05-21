@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AglTest.Domain.Models;
+using AglTest.Domain.Pets.Models;
 using AglTest.Infrastructure.Data;
 
 namespace AglTest.Infrastructure.Tests.Mocks

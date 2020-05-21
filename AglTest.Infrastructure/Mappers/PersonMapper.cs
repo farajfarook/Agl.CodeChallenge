@@ -19,7 +19,7 @@ namespace AglTest.Infrastructure.Mappers
             return new Person
             {
                 Age = dto.Age??0,
-                Gender = dto.Gender,
+                Gender = dto.Gender?? PersonGender.Other,
                 Name = dto.Name,
                 Pets = dto.Pets?.Select(p => p.Name)?? new List<string>()
             };
