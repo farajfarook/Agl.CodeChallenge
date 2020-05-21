@@ -41,7 +41,7 @@ This dotnet core demostrative application uses DDD principles for the back end a
 - AglTest.Infrastructure.Tests - Unit tests for the infrasructure source using `XUnit` and `NSubstitute`.
 
 ### Integration Tests
-- AglTest.IntegrationTests - BDD based integration tests using `Cucumber` and `Chai`
+- AglTest.IntegrationTests - BDD based API integration tests using `Cucumber` and `Chai`
 
 ## How to run?
 
