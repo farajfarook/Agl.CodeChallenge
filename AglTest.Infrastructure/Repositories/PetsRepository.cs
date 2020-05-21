@@ -26,7 +26,7 @@ namespace AglTest.Infrastructure.Repositories
         public async Task<IEnumerable<Pet>> ListAsync(string ownerName, CancellationToken cancellationToken)
         {
             var dto = await _dataService.FetchAsync(cancellationToken);
-            var personDto = dto.FirstOrDefault(p => p.Name == ownerName)
+            var personDto = dto?.FirstOrDefault(p => p.Name == ownerName)
                             ?? throw new NotFoundException($"Person {ownerName} not found");
             personDto.Pets ??= new List<PetDto>();
             var pets = personDto.Pets.Select(p => _mapper.Map(p)).ToList();

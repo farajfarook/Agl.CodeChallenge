@@ -25,7 +25,8 @@ namespace AglTest.Infrastructure.Repositories
         public async Task<IEnumerable<Person>> ListAsync(CancellationToken cancellationToken)
         {
             var dto = await _dataService.FetchAsync(cancellationToken);
-            var people = dto.Select(p => _mapper.Map(p)).ToList();
+            var people = dto?.Select(p => _mapper.Map(p)).ToList()
+                ?? new List<Person>();
             return people;
         }
 
