@@ -10,6 +10,7 @@ This dotnet core demostrative application uses DDD principles for the back end a
 +---------------------------------------------------------------+
 |                                                               |
 |                           traefik                             |
+|               (mapped to http://localhost:8080)               |
 |                                                               |
 +------------+------------------------------------+-------------+
              ^                                    ^
