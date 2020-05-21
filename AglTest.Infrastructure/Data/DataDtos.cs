@@ -12,7 +12,7 @@ namespace AglTest.Infrastructure.Data
         [JsonPropertyName("name")]
         public string Name { get; set; }
         [JsonPropertyName("age")]
-        public int Age { get; set; }
+        public int? Age { get; set; }
         [JsonPropertyName("pets")]
         public IEnumerable<PetDto> Pets { get; set; }
     }
