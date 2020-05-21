@@ -1,0 +1,20 @@
+{
+  "name": "agltest.integrationtests",
+  "version": "1.0.0",
+  "description": "AGL Test - Integration tests",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:prod": "TEST_ENV=production cucumber-js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^13.9.0",
+    "@types/chai": "^4.2.10",
+    "cucumber": "^6.0.5",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3",
+    "chai": "^4.2.0",
+    "axios": "^0.19.0"
+  }
+}
