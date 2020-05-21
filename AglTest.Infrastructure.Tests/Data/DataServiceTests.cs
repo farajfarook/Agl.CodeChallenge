@@ -8,6 +8,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 using NSubstitute;
 using Xunit;
 
@@ -35,24 +36,24 @@ namespace AglTest.Infrastructure.Tests.Data
         }
         
         [Fact]
-        public async Task FetchAsync_Success(string url)
+        public async Task FetchAsync_NoCacheSuccess()
         {
             var dataService = _provider.GetService<IDataService>();
             var restClient = _provider.GetService<IRestClient>();
             await dataService.FetchAsync(CancellationToken.None);
-            await restClient.GetAsync<List<PersonDto>>(Arg.Is(Endpoint)).Received();
+            await restClient.Received().GetAsync<List<PersonDto>>(Arg.Is(Endpoint));
         }
         
         [Fact]
-        public async Task FetchAsync_CacheSuccess(string url)
+        public async Task FetchAsync_CacheSuccess()
         {
             var dataService = _provider.GetService<IDataService>();
             var restClient = _provider.GetService<IRestClient>();
             var cache = _provider.GetService<IMemoryCache>();
-            cache.TryGetValue(Arg.Any<string>(), out Arg.Is(new List<PersonDto>())).Returns(true);
-            
+            cache.TryGetValue(Arg.Any<string>(), out Arg.Any<object>()).Returns(true);
+
             await dataService.FetchAsync(CancellationToken.None);
-            await restClient.GetAsync<List<PersonDto>>(Arg.Is(Endpoint)).DidNotReceive();
+            await restClient.DidNotReceive().GetAsync<List<PersonDto>>(Arg.Is(Endpoint));
         }
     }
 }

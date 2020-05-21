@@ -31,6 +31,7 @@ namespace AglTest.Infrastructure.RestClient
             try
             {
                 var resp = await _client.GetAsync(url, cancellationToken);
+                resp.EnsureSuccessStatusCode();
                 var content = await resp.Content.ReadAsStringAsync();
                 return JsonSerializer.Deserialize<TResp>(content);
             }

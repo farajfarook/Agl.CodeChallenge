@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using AglTest.Infrastructure.RestClient;
@@ -29,22 +30,48 @@ namespace AglTest.Infrastructure.Tests.RestClient
         }
 
         [Fact]
-        public async Task GetAsync_InvalidUrl_ThrowsException()
+        public async Task GetAsync_NotOk_ThrowsException()
         {
             var factory = _provider.GetService<IHttpClientFactory>();
-            var clientHandlerStub = new DelegatingHandlerStub();
+            var clientHandlerStub = new DelegatingHandlerStub(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.BadGateway,
+                Content = null
+            });
             var client = new HttpClient(clientHandlerStub);
             factory.CreateClient().Returns(client);
             
             var rest = _provider.GetService<IRestClient>();
-            await Assert.ThrowsAsync<RestInvalidUrlException>(() => rest.GetAsync<object>(UrlSample));
+            await Assert.ThrowsAsync<RestRequestFailedException>(() => rest.GetAsync<object>(UrlSample));
         }
 
+        
+        [Fact]
+        public async Task GetAsync_InvalidJson_ThrowsException()
+        {
+            var factory = _provider.GetService<IHttpClientFactory>();
+            var clientHandlerStub = new DelegatingHandlerStub(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent("{ssss:}")
+            });
+            var client = new HttpClient(clientHandlerStub);
+            factory.CreateClient().Returns(client);
+            
+            var rest = _provider.GetService<IRestClient>();
+            await Assert.ThrowsAsync<JsonException>(() => rest.GetAsync<object>(UrlSample));
+        }
+
+        
         [Fact]
         public void GetAsync_ValidUrl_Success()
         {            
             var factory = _provider.GetService<IHttpClientFactory>();
-            var clientHandlerStub = new DelegatingHandlerStub();
+            var clientHandlerStub = new DelegatingHandlerStub(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent("{}")
+            });
             var client = new HttpClient(clientHandlerStub);
             factory.CreateClient().Returns(client);
             
@@ -55,34 +82,21 @@ namespace AglTest.Infrastructure.Tests.RestClient
 
         [Fact]
         public async Task GetAsync_ErrorfulUrl_ThrowsException()
-        {            
-            var factory = _provider.GetService<IHttpClientFactory>();
-            var clientHandlerStub = new DelegatingHandlerStubWithException();
-            var client = new HttpClient(clientHandlerStub);
-            factory.CreateClient().Returns(client);
-            
+        {
             var rest = _provider.GetService<IRestClient>();
-            await Assert.ThrowsAsync<RestRequestFailedException>(() => rest.GetAsync<object>(UrlSample));
+            await Assert.ThrowsAsync<RestInvalidUrlException>(() => rest.GetAsync<object>("+--aaa.com"));
         }
     }
     
-    class DelegatingHandlerStubWithException : DelegatingHandler {
-        private readonly Func<HttpRequestMessage, CancellationToken, Task<HttpResponseMessage>> _handlerFunc;
-        public DelegatingHandlerStubWithException() {
-            _handlerFunc = (request, cancellationToken) => throw new HttpRequestException();
+    class DelegatingHandlerStub : DelegatingHandler
+    {
+        private readonly HttpResponseMessage _response;
+
+        public DelegatingHandlerStub(HttpResponseMessage response)
+        {
+            _response = response;
         }
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
-            return _handlerFunc(request, cancellationToken);
-        }
-    }
-    
-    class DelegatingHandlerStub : DelegatingHandler {
-        private readonly Func<HttpRequestMessage, CancellationToken, Task<HttpResponseMessage>> _handlerFunc;
-        public DelegatingHandlerStub() {
-            _handlerFunc = (request, cancellationToken) => Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK));
-        }
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
-            return _handlerFunc(request, cancellationToken);
-        }
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token) 
+            => Task.FromResult(_response);
     }
 }
