@@ -1,34 +1,46 @@
 # AglTest
-AGL Pet sorting test app
-
-## Builds
-
-Master 
-
-[![Build Status](https://travis-ci.org/farajfarook/AglTest.svg?branch=master)](https://travis-ci.org/farajfarook/AglTest)
-
-Develop 
-
-[![Build Status](https://travis-ci.org/farajfarook/AglTest.svg?branch=develop)](https://travis-ci.org/farajfarook/AglTest)
-
+AGL Pet Sorting [![Build Status](https://travis-ci.org/farajfarook/AglTest.svg?branch=master)](https://travis-ci.org/farajfarook/AglTest)
 
 ## Introduction
 
-This dotnet core 2.0 demostrative application uses DDD principles for the back end and the front end is developed using Angular
+This dotnet core demostrative application uses DDD principles for the back end and the front end is developed using Angular
+
++---------------------------------------------------------------+
+|                                                               |
+|                           traefik                             |
+|                                                               |
++------------+------------------------------------+-------------+
+             ^                                    ^
+             |                                    |
+             |  Route /api/v1/*                   |  Route /
+             |                                    |
+             |                                    |
+     +-------+---------+                 +--------+--------+
+     |                 |                 |                 |
+     |                 |                 |                 |
+     |     Pets API    |                 |   Angular App   |
+     |   AGLTest.Api   |                 |   AGLTest.Web   |
+     |                 |                 |                 |
+     |                 |                 |    NginX Box    |
+     |                 |                 |                 |
+     +-----------------+                 +-----------------+
+
 
 ### Projects
- - AglTest.Domain - Domain business logic
- - AglTest.Infratructure - Infrastructure implementation of the logic
- - AglTest.Web - Web APIs and the base server for the Angular application
+ - AglTest.Api - Api based on Command Handler Pattern using `Enbiso.NLib.Cqrs`
+ - AglTest.Domain - Domain objects and logic
+ - AglTest.Infratructure - Infrastructure implementation. API calls and Repos
+ - AglTest.Web - Pure angular application using serice based store pattern using `BehaviourSubjects`
 
 ### Unit Tests
-- AglTest.Domain.Tests - Unit tests written in XUnit and Moq for the domain logic
-- AglTest.Infrastructure.Tests - Unit tests for the infrasructure implemtations.
+- AglTest.Domain.Tests - Unit tests written in `XUnit` and `NSubstitute` for the domain logic
+- AglTest.Infrastructure.Tests - Unit tests for the infrasructure source using `XUnit` and `NSubstitute`.
+
+### Integration Tests
+- AglTest.IntegrationTests - BDD based integration tests using `Node` and `CucumberJs`
 
 ## How to run?
 
- - `cd AglTest.Web`
- - `npm i`
- - `webpack --config=webpack.config.vendor.js`
- - `webpack`
- - `dotnet run`
+ - `docker-compose up`
+ - Application http://localhost:8088/
+ - Swagger http://localhost:8088/api/v1/swagger
