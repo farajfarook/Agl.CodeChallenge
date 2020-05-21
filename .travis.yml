@@ -7,3 +7,4 @@ script:
   - dotnet test ./AglTest.Domain.Tests/
   - dotnet test ./AglTest.Infrastructure.Tests/
   - docker build -f AglTest.Api/Dockerfile .
+  - docker build -f AglTest.Web/Dockerfile .
