@@ -76,25 +76,5 @@ namespace AglTest.Infrastructure.Tests.Mocks
         {
             return new List<PersonDto>() {Sam, Anne, Jenny, Raju, Wini, Stev};
         }
-
-        public static List<PersonDto> GetAllNullPeople()
-        {
-            return new List<PersonDto>() {null, null, null, null, null, null};
-        }
-
-        public static List<PersonDto> GetSomeNullPeople()
-        {
-            return new List<PersonDto>() {null, Sam, Anne, Jenny, null, Raju, Wini, Stev, null};
-        }
-
-        public static List<PersonDto> GetAllEmptyPetPeople()
-        {
-            return new List<PersonDto>() {Raju, Wini};
-        }
-
-        public static List<PersonDto> GetSharedPetPeople()
-        {
-            return new List<PersonDto>() {Anne, Stev, Jenny};
-        }
     }
 }

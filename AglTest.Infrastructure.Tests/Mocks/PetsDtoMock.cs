@@ -47,25 +47,5 @@ namespace AglTest.Infrastructure.Tests.Mocks
             Name = "Hogger",
             Type = PetType.Fish
         };
-
-        public static IEnumerable<PetDto> GetAllValidPets()
-        {
-            return new[] {Nick, Max, Maxi, Kite, Spooky, Mingo, Hogger};
-        }
-        
-        public static IEnumerable<PetDto> GetSomeNullValidPets()
-        {
-            return new[] {Nick, Max, Maxi, null, Kite, Spooky, null, Mingo, Hogger};
-        }
-        
-        public static IEnumerable<PetDto> GetAllNullPets()
-        {
-            return new List<PetDto>() {null, null, null, null, null};
-        }
-
-        public static IEnumerable<PetDto> GetDuplicatedListPets()
-        {
-            return new[] {Nick, Max, Maxi, Spooky, Spooky, Mingo, Hogger};
-        }
     }
 }

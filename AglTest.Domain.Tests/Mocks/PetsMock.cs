@@ -3,7 +3,7 @@ using AglTest.Domain.Models;
 
 namespace AglTest.Domain.Tests.Mocks
 {
-    public class Pets
+    public static class PetsMock
     {
         public static readonly Pet Nick = new Pet
         {
@@ -47,24 +47,24 @@ namespace AglTest.Domain.Tests.Mocks
             Type = PetType.Fish
         };
 
-        public static IEnumerable<Pet> GetAllValidPets()
+        public static List<Pet> GetAllValidPets()
         {
-            return new[] {Nick, Max, Maxi, Kite, Spooky, Mingo, Hogger};
+            return new List<Pet>{Nick, Max, Maxi, Kite, Spooky, Mingo, Hogger};
         }
         
-        public static IEnumerable<Pet> GetSomeNullValidPets()
+        public static List<Pet> GetSomeNullValidPets()
         {
-            return new[] {Nick, Max, Maxi, null, Kite, Spooky, null, Mingo, Hogger};
+            return new List<Pet>{Nick, Max, Maxi, null, Kite, Spooky, null, Mingo, Hogger};
         }
         
-        public static IEnumerable<Pet> GetAllNullPets()
+        public static List<Pet> GetAllNullPets()
         {
             return new List<Pet>() {null, null, null, null, null};
         }
 
-        public static IEnumerable<Pet> GetDuplicatedListPets()
+        public static List<Pet> GetDuplicatedListPets()
         {
-            return new[] {Nick, Max, Maxi, Spooky, Spooky, Mingo, Hogger};
+            return new List<Pet>{Nick, Max, Maxi, Spooky, Spooky, Mingo, Hogger};
         }
     }
 }

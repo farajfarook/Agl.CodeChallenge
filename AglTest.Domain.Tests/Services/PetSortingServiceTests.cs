@@ -1,41 +1,44 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using AglTest.Domain.Models;
+﻿using System;
 using AglTest.Domain.Pets.Services;
 using AglTest.Domain.Tests.Mocks;
 using Castle.Core.Internal;
-using Microsoft.Extensions.Logging;
-using Moq;
+using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
 namespace AglTest.Domain.Tests.Services
 {
     public class PetSortingServiceTests
     {
-        private readonly IPetSortingService _service = new PetUtilService(Mock.Of<ILogger<PetUtilService>>());
-                
+        private readonly IPetSortingService _service = new PetSortingService(NullLogger<PetSortingService>.Instance);
 
         [Fact]
         public void SortByName_AllValidPets_Success()
         {
-            var data = Pets.GetAllValidPets();                      
+            var data = PetsMock.GetAllValidPets();                      
             var pets = _service.SortByName(data).ToArray();
-            Assert.True(pets[0] == Pets.Hogger);
+            
+            data.Sort((pet, pet1) => string.Compare(pet.Name, pet1.Name, StringComparison.Ordinal));
+
+            for (var i = 0; i < pets.Length; i++)
+                Assert.Equal(pets[i], data[i]);
+            
         }
         
         [Fact]
         public void SortByName_SomeNullValidPets_FilteredValues()
         {
-            var data = Pets.GetSomeNullValidPets();
+            var data = PetsMock.GetSomeNullValidPets();
             var pets = _service.SortByName(data).ToArray();
-            Assert.True(pets[0] == Pets.Hogger);
+            Assert.True(pets[0] == PetsMock.Hogger);
+            Assert.True(pets[1] == PetsMock.Kite);
+            Assert.True(pets[6] == PetsMock.Spooky);
             Assert.True(pets.Length == 7);
         }
         
         [Fact]
         public void SortByName_WithAllNullPets_Empty()
         {
-            var data = Pets.GetAllNullPets();
+            var data = PetsMock.GetAllNullPets();
             var pets = _service.SortByName(data).ToArray();
             Assert.True(pets.IsNullOrEmpty());
         }
@@ -43,9 +46,9 @@ namespace AglTest.Domain.Tests.Services
         [Fact]
         public void SortByName_DuplicatedPets_Success()
         {
-            var data = Pets.GetDuplicatedListPets();
+            var data = PetsMock.GetDuplicatedListPets();
             var pets = _service.SortByName(data).ToArray();
-            Assert.True(pets[0] == Pets.Hogger);
+            Assert.True(pets[0] == PetsMock.Hogger);
         }
     }
 }
